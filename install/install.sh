@@ -12,17 +12,22 @@ source  ../config/tool_path.sh;
 if [ ! -d "$__SHELL_UTIL__INSTALL_PATH" ] 
 then
         echo "* Installing shell-util.functions *"
-        sudo mkdir -p "$__SHELL_UTIL__INSTALL_PATH";
+        echo "*          __SHELL_UTIL__INSTALL_PATH=$__SHELL_UTIL__INSTALL_PATH";
 
-        sudo ln -s "../main.sh" "$__SHELL_UTIL__INSTALL_PATH/main.sh";
-        sudo ln -s "../config/tool_path.sh" ~/.shell-util.functions/tool_path.sh;
-        sudo ln -s "../config/user_path.sh" ~/.shell-util.functions/user_path.sh;
-
-        # for FILE in bin/control/*; do sudo ln -s $FILE "$__SHELL_UTIL__INSTALL_PATH/$FILE"; done
-        for FILE in ../bin/data/*;    do sudo ln -s $FILE "$__SHELL_UTIL__INSTALL_PATH/$FILE"; done
 
         ## Create   [ User-specific configuration directory: ]
         mkdir -p ~/.config/shell-util.functions
+        cp "../config/tool_path.sh" ~/.config/shell-util.functions/tool_path.sh;
+        cp "../config/user_path.sh" ~/.config/shell-util.functions/user_path.sh;
+
+
+        cd ../bin/data;
+        for FILE in *; do sudo ln -s $FILE "$__SHELL_UTIL__INSTALL_PATH/$(echo $FILE | sed -e 's|\.sh||')"; done
+       
+        cd ../control;
+        for FILE in *; do sudo ln -s $FILE "$__SHELL_UTIL__INSTALL_PATH/$(echo $FILE | sed -e 's|\.sh||')"; done
+        
+        cd ../../install;
 
         ## Update   [      ~/.bashrc  ]
         source      ./update-bashrc.sh;
