@@ -15,6 +15,9 @@ sed -e   "s|.*shell-util.functions )$||"   -i ~/.bashrc;
 
 echo "** Removing [scripts from installation directory]     **";     
 sudo rm "$__SHELL_UTIL__INSTALL_PATH/main.sh";
+
+## Remove user-specific configuration:   [would be nice to switch on/off with a script param]
+rm -rf ~/.config/shell-util.functions
 # for FILE in bin/control/*; do sudo rm "$__SHELL_UTIL__INSTALL_PATH/$FILE"; done
 for FILE in bin/data/*;    do sudo rm "$__SHELL_UTIL__INSTALL_PATH/$FILE"; done
 
