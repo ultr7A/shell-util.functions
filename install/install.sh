@@ -12,24 +12,33 @@ echo "Installer:  Working directory: $(pwd)";
 
 ## Install helpers:
 function __convert_function_to_command__() {
-        echo "converting function to command: bin/$1";
         export COMMAND_NAME="$(echo $1 | sed -e 's|\.sh||')";
         cp $1 "$COMMAND_NAME";
         
-        echo -e "\ncommand: $COMMAND_NAME";
         sed -e 's|.*SHELL_UTIL.FUNCTION||' -i "$COMMAND_NAME";
-        echo "output: ";
-        cat "$COMMAND_NAME";
+       
+        mv "$COMMAND_NAME" "../../bin/$2/$COMMAND_NAME";
+        echo                            "$COMMAND_NAME";
 
-        mv "$COMMAND_NAME" "../../bin/$2/$COMMAND_NAME"
+}
+
+function __install__tool__() {
+        echo "__install__tool() _________________________";
+        echo "working dir:  $1";
+        echo "tool type:    $2";
+        echo "tool name:    $3";
+        echo "install path: $4";
+        echo "";
+        echo "Link to $1/bin/$2/$3  through $4/$3";
+        echo "";
+        sudo ln -s "$1/bin/$2/$3" "$4/$3" && sudo chmod 775 "$4/$3"
 }
 
 function __install_toolset__() {
         cd "$2";
-                for FILE in *; do __convert_function_to_command__ $FILE $1; done
-                #for FILE in *; do sudo ln -s       "bin/$(echo $FILE | sed -e 's|\.sh||')" "$__SHELL_UTIL__INSTALL_PATH/$(echo $FILE | sed -e 's|\.sh||')"; done
-                #for FILE in *; do sudo chmod 775                                           "$__SHELL_UTIL__INSTALL_PATH/$(echo $FILE | sed -e 's|\.sh||')"; done
-        cd "../" 
+                for FILE in *; do export CMD_NAME="$(__convert_function_to_command__ $FILE $1)" && __install__tool__ "$3" "$1" "$CMD_NAME" "$__SHELL_UTIL__INSTALL_PATH"; done
+        
+        cd "../../" 
 }
 
 
@@ -45,10 +54,10 @@ then
         cp "config/tool_path.sh" ~/.config/shell-util.functions/tool_path.sh;
         cp "config/user_path.sh" ~/.config/shell-util.functions/user_path.sh;
 
-
-        __install_toolset__ "data"    "../src/data";
-        __install_toolset__ "control" "../src/control";
-          
+        cd ../
+        __install_toolset__ "data"    "src/data"    "$(pwd)";
+        __install_toolset__ "control" "src/control" "$(pwd)";
+        
         cd ./install;
 
         ## Update   [      ~/.bashrc  ]
