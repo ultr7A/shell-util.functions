@@ -1,0 +1,7 @@
+#!/bin/bash
+#▔▔▔▔▔▔▔▔▔▔▔
+
+
+ ##
+	echo find . | egrep -iE $1;	
+ ##
