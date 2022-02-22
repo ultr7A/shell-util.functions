@@ -23,14 +23,6 @@ function __convert_function_to_command__() {
 }
 
 function __install__tool__() {
-        echo "__install__tool() _________________________";
-        echo "working dir:  $1";
-        echo "tool type:    $2";
-        echo "tool name:    $3";
-        echo "install path: $4";
-        echo "";
-        echo "Link to $1/bin/$2/$3  through $4/$3";
-        echo "";
         sudo ln -s "$1/bin/$2/$3" "$4/$3" && sudo chmod 775 "$4/$3"
 }
 
