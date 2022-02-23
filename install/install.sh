@@ -40,11 +40,10 @@ then
         echo "* Installing shell-util.functions *"
         echo "*          __SHELL_UTIL__INSTALL_PATH=$__SHELL_UTIL__INSTALL_PATH";
 
-
         ## Create   [ User-specific configuration directory: ]
         mkdir -p ~/.config/shell-util.functions
-        cp "config/tool_path.sh" ~/.config/shell-util.functions/tool_path.sh;
-        cp "config/user_path.sh" ~/.config/shell-util.functions/user_path.sh;
+        cp "../config/tool_path.sh" ~/.config/shell-util.functions/tool_path.sh;
+        cp "../config/user_path.sh" ~/.config/shell-util.functions/user_path.sh;
 
         cd ../
         __install_toolset__ "data"    "src/data"    "$(pwd)";
