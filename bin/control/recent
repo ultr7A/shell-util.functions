@@ -2,5 +2,5 @@
 #▔▔▔▔▔▔▔▔▔▔▔
 
  ##
-    $(__ls_recent_commands $1 1);    
+    $(__ls_recent_commands $1);    
  ##
