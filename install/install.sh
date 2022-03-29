@@ -3,12 +3,20 @@
 
 ##########################################################
 #  Installation
-#
+# 
 
 ## Config:
-source  ../config/tool_path.sh; 
 
-echo "Installer:  Working directory: $(pwd)";
+### Installer Config:
+source  ../config/tool_path.sh;
+
+### Application Config: 
+if [[ -z "$SUDO_USER" ]]; then
+        export __USER_HOME="/home/$SUDO_USER";
+else
+        export __USER_HOME="/root";
+fi
+
 
 ## Install helpers:
 function __convert_function_to_command__() {
@@ -28,7 +36,7 @@ function __install__tool__() {
 
 function __install_toolset__() {
         cd "$2";
-                for FILE in *; do export CMD_NAME="$(__convert_function_to_command__ $FILE $1)" && __install__tool__ "$3" "$1" "$CMD_NAME" "$__SHELL_UTIL__INSTALL_PATH"; done
+                for FILE in *; do export CMD_NAME="$(__convert_function_to_command__ $FILE $1)" && __install__tool__ "$3" "$1" "$CMD_NAME"   "$__SHELL_UTIL__INSTALL_PATH"; done
         
         cd "../../" 
 }
@@ -40,10 +48,13 @@ then
         echo "* Installing shell-util.functions *"
         echo "*          __SHELL_UTIL__INSTALL_PATH=$__SHELL_UTIL__INSTALL_PATH";
 
+        echo -e "\n";
+        
         ## Create   [ User-specific configuration directory: ]
-        mkdir -p ~/.config/shell-util.functions
-        cp "../config/tool_path.sh" ~/.config/shell-util.functions/tool_path.sh;
-        cp "../config/user_path.sh" ~/.config/shell-util.functions/user_path.sh;
+
+        mkdir -p                    "$__USER_HOME/.config/shell-util.functions";
+        cp "../config/tool_path.sh" "$__USER_HOME/.config/shell-util.functions/tool_path.sh";
+        cp "../config/user_path.sh" "$__USER_HOME/.config/shell-util.functions/user_path.sh";
 
         cd ../
         __install_toolset__ "data"    "src/data"    "$(pwd)";

@@ -21,8 +21,6 @@ function fts() {				## SHELL_UTIL.FUNCTION ##
 		echo "Command requires at minimum, a 'search phrase'."
 	fi
 
-	echo "Search_Path = $SEARCH_PATH"; 
-	echo "search_text = $1";
 	pushd "$SEARCH_PATH";
    	#clear 	                    &&
    	find . -type f -exec egrep -iE -IH -A3 -B1 --color "'$1'" {} \;

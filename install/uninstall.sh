@@ -5,8 +5,19 @@
 #
 
 
-##      Config:
-source  ../config/tool_path.sh; 
+## Config:
+
+### Installer Config:
+source  ../config/tool_path.sh;
+
+### Application Config: 
+if [[ -z "$SUDO_USER" ]]; then
+        export __USER_HOME="/home/$SUDO_USER";
+else
+        export __USER_HOME="/root";
+fi
+
+
 
 ##      Operations:
 echo "** Removing [shell-util.functions from .bashrc]       **";
