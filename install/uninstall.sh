@@ -42,8 +42,11 @@ cd ../control;
 
 
 ## Remove user-specific configuration:   [would be nice to switch on/off with a script param]
-echo "** Removing [user configuration] **";
+echo -e "** Removing [user configuration] **\n";
 rm -rf ~/.config/shell-util.functions
+
+
+source "../../install/helpers/done_hr";
 
 #
 #

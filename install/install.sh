@@ -46,10 +46,8 @@ function __install_toolset__() {
 ## Core:
 if [ ! -d "$__SHELL_UTIL__INSTALL_PATH/file_search" ] 
 then
-        echo "* Installing shell-util.functions *"
-        echo "*          __SHELL_UTIL__INSTALL_PATH=$__SHELL_UTIL__INSTALL_PATH";
-
-        echo -e "\n";
+        echo -e "\n* Installing shell-util.functions *"
+        echo      "*          __SHELL_UTIL__INSTALL_PATH=$__SHELL_UTIL__INSTALL_PATH";
         
         ## Create   [ User-specific configuration directory: ]
 
@@ -64,9 +62,11 @@ then
         cd ./install;
 
         ## Update   [      ~/.bashrc  ]
-        source      ./update-bashrc.sh;
+        source      ./helpers/update-bashrc.sh;
 fi
- 
+
+source "./helpers/done_hr";
+
 #
 #
 ##########################################################

@@ -10,5 +10,5 @@ then
     # echo -e   'source "~/.config/shell-util.functions/alias.sh"      ## Load( shell-util.functions )' >> ~/.bashrc;
     # echo -e   'source "~/.config/shell-util.functions/user_path.sh"  ## Load( shell-util.functions )' >> ~/.bashrc;
 
-    # echo -e   "Done.\n"
+    echo -e "* [Skipping .bashrc customisations] \n" 
 fi
