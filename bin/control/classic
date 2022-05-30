@@ -1,5 +1,5 @@
 #!/bin/bash
-#▔▔▔▔▔▔▔▔▔▔▔
+#
 
  ##
     $(__ls_classic_commands $1);    
