@@ -17,8 +17,9 @@ else
         export __USER_HOME="/root";
 fi
 
-
-
+echo -e "Uninstalling shell-util.functions";
+echo "user:                   $__USER_HOME";
+echo "installation directory: $__SHELL_UTIL__INSTALL_PATH";
 ##      Operations:
 echo "** Removing [shell-util.functions from .bashrc]       **";
 sed -e   "s|.*shell-util.functions $||"   -i ~/.bashrc;

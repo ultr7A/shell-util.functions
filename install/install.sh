@@ -11,6 +11,7 @@
 source  ../config/tool_path.sh;
 
 ### Application Config: 
+### TODO: Refactor:
 if [[ ! -z "$SUDO_USER" ]]; then
         export __USER_HOME="/home/$SUDO_USER";
 else
