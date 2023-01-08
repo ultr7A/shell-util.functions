@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-##########################################################
+#  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 #  Installation
 # 
 
@@ -9,14 +9,6 @@
 
 ### Installer Config:
 source  ../config/tool_path.sh;
-
-### Application Config: 
-### TODO: Refactor:
-if [[ ! -z "$SUDO_USER" ]]; then
-        export __USER_HOME="/home/$SUDO_USER";
-else
-        export __USER_HOME="/root";
-fi
 
 
 ## Install helpers:
@@ -49,24 +41,15 @@ then
         echo -e "\n* Installing shell-util.functions *"
         echo      "*          __SHELL_UTIL__INSTALL_PATH=$__SHELL_UTIL__INSTALL_PATH";
         
-        ## Create   [ User-specific configuration directory: ]
-
-        mkdir -p                    "$__USER_HOME/.config/shell-util.functions";
-        cp "../config/tool_path.sh" "$__USER_HOME/.config/shell-util.functions/tool_path.sh";
-        cp "../config/user_path.sh" "$__USER_HOME/.config/shell-util.functions/user_path.sh";
-
         cd ../
         __install_toolset__ "data"    "src/data"    "$(pwd)";
         __install_toolset__ "control" "src/control" "$(pwd)";
         
         cd ./install;
 
-        ## Update   [      ~/.bashrc  ]
-        source      ./helpers/update-bashrc.sh;
 fi
 
 source "./helpers/done_hr";
 
-#
-#
-##########################################################
+
+#   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
